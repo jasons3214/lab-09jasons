@@ -9,28 +9,57 @@
 
 
 def two_sum(nums, target):
-    # Outline (write your plan here first):
-    #   ...
-    # TODO: return the indices [i, j] (i < j) of the two numbers in `nums` that add up
-    #   to `target`. Assume there is exactly one answer.
-    pass
+    # Outline:
+    # keep track of index and value with enumerate, then compare the value at current index to all values in a list 
+    # of current index + 1:. returning index1+ index2 + 1 because we need to add all of the places that were lost when i sliced the list
+    for index1, value in enumerate(nums):
+        for index2, compare in enumerate(nums[index1 + 1:]):
+            if value + compare == target:
+                return [index1, index1 + index2 + 1]
 
 
 def max_profit(prices):
-    # Outline:
-    #   ...
-    # TODO: `prices[i]` is a stock price on day i. Return the most profit obtainable by
-    #   buying on one day and selling on a LATER day. If no profit is possible, return 0.
-    pass
+     # Outline:
+    # creating list of all possible values, and return max of that list 
+    # subtract number after by initial number to get profit
+    if len(prices) <= 1: # not possible to calculate profit in this case
+        return 0
+
+    profits = []
+    for index, value in enumerate(prices):
+        for index2, value2 in enumerate(prices[index + 1:]):
+            profits.append(value2 - value)
+
+    if max(profits) < 0:
+        return 0
+    else: return max(profits)
 
 
 def max_subarray(nums):
     # Outline:
-    #   ...
+    # for each item in nums, sum the whole list forward from that item, then cut off the last item each time
+    # every time i finish summing something, add that sum to the subarray_sums list. Return max of that list
+    if not nums:
+        return None
+    
+    subarray_sums = []
+
+    for i in range(len(nums)):
+        end = len(nums)
+        # every time i start a new loop, start at the next index, until the last index
+        
+        for j in range(len(nums[i:end])):
+            print(nums[i:end])
+            subarray_sums.append(sum(nums[i:end]))
+            end -= 1
+            if end == 0:
+                break;
+
+        
+    return max(subarray_sums)
+
     # TODO: return the largest sum of any contiguous (in-a-row) block of numbers in
     #   `nums`. The list has at least one number.
-    pass
-
 
 def is_balanced(s):   # Part 4 - stretch (optional)
     # Outline:
@@ -43,8 +72,7 @@ def is_balanced(s):   # Part 4 - stretch (optional)
 def main():
     # Optional scratch space - try your functions here, then run: python lab09.py
     # print(two_sum([2, 7, 11, 15], 9))   # [0, 1]
-    pass
-
+    print(max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
 
 if __name__ == "__main__":
     main()
