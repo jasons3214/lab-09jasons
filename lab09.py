@@ -17,7 +17,6 @@ def two_sum(nums, target):
             if value + compare == target:
                 return [index1, index1 + index2 + 1]
 
-
 def max_profit(prices):
      # Outline:
     # creating list of all possible values, and return max of that list 
@@ -54,12 +53,8 @@ def max_subarray(nums):
             end -= 1
             if end == 0:
                 break;
-
         
     return max(subarray_sums)
-
-    # TODO: return the largest sum of any contiguous (in-a-row) block of numbers in
-    #   `nums`. The list has at least one number.
 
 def is_balanced(s):   # Part 4 - stretch (optional)
     # Outline:
@@ -70,9 +65,7 @@ def is_balanced(s):   # Part 4 - stretch (optional)
 
 
 def main():
-    # Optional scratch space - try your functions here, then run: python lab09.py
-    # print(two_sum([2, 7, 11, 15], 9))   # [0, 1]
-    print(max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+    pass
 
 if __name__ == "__main__":
     main()
