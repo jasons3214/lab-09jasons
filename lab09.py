@@ -48,7 +48,6 @@ def max_subarray(nums):
         # every time i start a new loop, start at the next index, until the last index
         
         for j in range(len(nums[i:end])):
-            print(nums[i:end])
             subarray_sums.append(sum(nums[i:end]))
             end -= 1
             if end == 0:
